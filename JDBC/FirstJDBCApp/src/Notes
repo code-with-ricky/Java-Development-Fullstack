@@ -1,0 +1,40 @@
+Statement Vs PreparedStatement
+
+	Statement
+		^
+		|
+		|
+PreparedStatement
+
+
+Statement stmt = connect.createStatement();
+stmt.executeUpdate(query);
+stmt.executeQuery(query);
+stmt.execute(query);
+
+Note: each time we execute:
+		query is compiled by DB engine + 
+		query is executed
+		
+		
+-----------------------------------------------------------------------------------------------------------------------------
+
+PreparedStatement ps = connect.prepareStatement(query); --> prepare the sentence + compile the query by db engine
+ps.setImt(placeholderNumber, value); etc
+
+ps.executeUpdate();
+ps.executeQuery();
+ps.execute();
+
+Note: each time we execute --> query is executed
+more efficient
+
+Work with precompiled query
+-----------------------------------------------------------------------------------------------------------------------------
+
+Batch Update --> suppose when you want to perform update operation of multiple records
+--> if you use executeUpdate()
+--> for each data i need to run the executeUpdate() and each time DB will be hit
+--> but if i use batch then multiple will be done at once --> only one db hit
+
+see the LaucnhApp8_BatchUpdate.java file
